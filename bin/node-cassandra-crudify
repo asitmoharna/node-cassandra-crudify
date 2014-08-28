@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+var path = require('path'),
+    program = require('commander');
+
+var pkg = require('../package.json'),
+    version = pkg.version;
+
+var NodeCassandraCrudify = require(path.join(__dirname, '../lib/node-cassandra-crudify.js'));
+
+/**
+ * CLI
+ */
+program
+  .version(version)
+  .usage('modelname [attribute1_name:attribute_type attribute2_name:attribute_type]')
+  .parse(process.argv);
+
+/**
+ * Helper function to get the attributes and their types
+ *
+ * @param {Array} attributes
+ * @return {Object} modified_attributes with key as the attribute name and value as attribute type
+ */
+function prepareAttributes(attributes){
+  var formattedAttributes = { "id": "uuid" };
+
+  for(var i = 0; i < attributes.length; i++){
+    var attrWithType = attributes[i].split(':');
+    formattedAttributes[attrWithType[0]] = attrWithType[1];
+  }
+  return formattedAttributes;
+}
+
+program.parse(process.argv);
+
+if(!program.args.length){
+  program.help();
+} else {
+  var resource = program.args.shift(),
+      attribs = prepareAttributes(program.args);
+
+  var crudify = new NodeCassandraCrudify(resource, attribs);
+  crudify.run();
+}
