@@ -1,0 +1,90 @@
+var {{resource}} = require('../models/{{resource}}.js');
+
+var {{resourcePlural}}Controller = {};
+
+/**
+ * Get the list of {{resourcePlural}}
+ *
+ */
+{{resourcePlural}}Controller.index = function(req, res){
+  {{resource}}.findAll(function(err, items){
+    if(err){
+      res.status = 422;
+      res.json({status: 422, message: "Unable to fetch {{resourcePlural}}" + err});
+    } else {
+      res.status = 200;
+      res.json({status: 200, message: "Successfully fetched {{resourcePlural}}", items: items});
+    }
+  });
+}
+
+/**
+ * Create a {{resource}}
+ *
+ */
+{{resourcePlural}}Controller.create = function(req, res){
+  var {{resource}}_attributes = req.body.{{resource}};
+  {{resource}}.save({{resource}}_attributes, function(err, items){
+    if(err){
+      res.status = 422;
+      res.json({status: 422, message: "Unable to create {{resource}}" + err});
+    } else {
+      res.status = 201;
+      res.json({status: 201, message: "Successfully created {{resource}}", items: items});
+    }
+  });
+}
+
+/**
+ * Get a {{resource}}
+ *
+ */
+{{resourcePlural}}Controller.show = function(req, res){
+  var {{resource}}_id = req.params.id;
+  {{resource}}.find({{resource}}_id, function(err, item){
+    if(err){
+      res.status = 422;
+      res.json({status: 422, message: "Unable to fetch {{resource}}" + err});
+    } else {
+      res.status = 200;
+      res.json({status: 200, message: "Successfully fetched {{resource}}", item: item});
+    }
+  });
+}
+
+/**
+ * Update a {{resource}}
+ *
+ */
+{{resourcePlural}}Controller.update = function(req, res){
+  var {{resource}}_id = req.params.id,
+      {{resource}}_attributes = req.body.{{resource}};
+  {{resource}}.update({{resource}}_id, {{resource}}_attributes, function(err, items){
+    if(err){
+      res.status = 422;
+      res.json({status: 422, message: "Unable to update {{resource}}" + err});
+    } else {
+      res.status = 200;
+      res.json({status: 200, message: "Successfully updated {{resource}}", item: item});
+    }
+  });
+}
+
+/**
+ * Delete a {{resource}}
+ *
+ */
+{{resourcePlural}}Controller.destroy = function(req, res){
+  var {{resource}}_id = req.params.id;
+  {{resource}}.delete({{resource}}_id, function(err){
+    if(err){
+      res.status = 422;
+      res.json({status: 422, message: "Unable to delete {{resource}}" + err});
+    } else {
+      res.status = 200;
+      res.json({status: 200, message: "Successfully deleted {{resource}}"});
+    }
+  });
+}
+
+module.exports = {{resourcePlural}}Controller;

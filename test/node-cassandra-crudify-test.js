@@ -38,7 +38,7 @@ describe("NodeCassandraCrudify", function(){
     });
 
     it("sets default resource file types when no options given", function(){
-      crudify.resourceFileTypes.should.eql(['cql', 'model', 'controller', 'router']);
+      crudify.resourceFileTypes.should.eql(['cql', 'model', 'controller', 'route']);
     });
 
     it("sets resource file types from options", function(){
@@ -49,7 +49,7 @@ describe("NodeCassandraCrudify", function(){
       crudify.templates.should.have.property('cql', 'cql.mustache');
       crudify.templates.should.have.property('model', 'model.mustache');
       crudify.templates.should.have.property('controller', 'controller.mustache');
-      crudify.templates.should.have.property('router', 'router.mustache');
+      crudify.templates.should.have.property('route', 'route.mustache');
     });
 
     it("sets resource templates from options", function(){

@@ -1,0 +1,7 @@
+{
+  "create": "insert into {{resourcePlural}} {{attributesNames}} values ({{questions}})",
+  "update": "update {{resourcePlural}} set {{questionizedParameters}} where id = ?",
+  "findAll": "select {{attributesNames}} from {{resourcePlural}}",
+  "find": "select {{attributesNames}} from {{resourcePlural}} where id = ?",
+  "destroy": "delete from {{resourcePlural}} where id = ?"
+}

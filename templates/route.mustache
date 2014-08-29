@@ -1,0 +1,32 @@
+var {{resourcePlural}}Controller = require('../controllers/{{resourcePlural}}-controller.js');
+
+module.exports = function(app){
+
+  /* GET List {{resourcePlural}}. */
+  app.get('/{{resourcePlural}}', function(req, res) {
+    {{resourcePlural}}Controller.index(req, res);
+  });
+
+  /* POST Create {{resource}}. */
+  app.post('/{{resourcePlural}}', function(req, res) {
+    {{resourcePlural}}Controller.create(req, res);
+  });
+
+  /* GET Show {{resource}}. */
+  app.get('/{{resource}}/:id', function(req, res) {
+    {{resourcePlural}}Controller.show(req, res);
+  });
+
+  /* PUT Update {{resource}}. */
+  app.put('/{{resourcePlural}}/:id', function(req, res) {
+    {{resourcePlural}}Controller.update(req, res);
+  });
+
+  /* DELETE Destroy {{resource}}. */
+  app.delete('/{{resourcePlural}}/:id', function(req, res) {
+    {{resourcePlural}}Controller.destroy(req, res);
+  });
+
+}
+
+module.exports = app;
