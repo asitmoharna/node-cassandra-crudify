@@ -1,5 +1,5 @@
 node-cassandra-crudify
 ======================
 
-An opinionated way to create and scaffold resources using [Express'](https://github.com/strongloop/express) with cassandra as backend!
-( work in progress )
+An opinionated way to create and scaffold resources for your NodeJS Backend API,
+with Cassandra as backend! (wip)
